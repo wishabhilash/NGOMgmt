@@ -111,33 +111,39 @@ def get_employee_payslip_fieldsets():
 	deduction_fields = []
 	income_row = []
 	deduction_row = []
-	income_count = 0
-	deduction_count = 0
 
 	for dat in data:
 		if dat.head_type.lower() == 'income':
-			income_count += 1
 			income_row.append('payslip_' + dat.head_name.lower())
-			if income_count < 2: continue
-			
 		else:
-			deduction_count += 1
 			deduction_row.append('payslip_' + dat.head_name.lower())
-			if deduction_count < 2: continue
-			
+
+
+	def realign_text_boxes(lis):
+		ret_list = []
+		count = 0
+		temp_list = []
+		for i in lis:
+			temp_list.append(i)
+			count += 1
+			if count == 2:
+				ret_list.append(tuple(temp_list))
+				temp_list = []
+				count = 0
+		if temp_list: ret_list.append(tuple(temp_list))
+		return tuple(ret_list)
+
 		
-		if income_row:
-			income_fields.append(tuple(income_row))
-			income_count = 0
-			income_row = []
-		elif deduction_row:
-			deduction_fields.append(tuple(deduction_row))
-			deduction_count = 0
-			deduction_row = []
+	if income_row:
+		income_fields = realign_text_boxes(income_row)
+	if deduction_row:
+		deduction_fields = realign_text_boxes(deduction_row)
+
 
 	income_fieldset[1]['fields'] = tuple(income_fields)
 	deduction_fieldset[1]['fields'] = tuple(deduction_fields)
 
+	# print [income_fieldset, deduction_fieldset]
 	return [income_fieldset, deduction_fieldset]
 
 

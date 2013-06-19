@@ -69,11 +69,11 @@ class CustomTextInput(forms.TextInput):
 	"""docstring for CustomTextInput"""
 	class Media:
 		js = (
-			'/static/HRMS/js/autocomplete.js',
+			'/static/hrms/js/autocomplete.js',
 		)
 
 		css = {
-			'all' : ('/static/HRMS/css/hrms_style.css',)
+			'all' : ('/static/hrms/css/hrms_style.css',)
 		}
 
 

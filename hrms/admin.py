@@ -141,21 +141,21 @@ def get_employee_payslip_fieldsets():
 	return [income_fieldset, deduction_fieldset]
 
 
-# class EmployeePayslipAdmin(admin.ModelAdmin):
-# 	"""docstring for PayslipAdmin"""
+class EmployeePayslipAdmin(admin.ModelAdmin):
+	"""docstring for PayslipAdmin"""
 	
-# 	form = get_employee_payslip_form()
-# 	fieldsets = tuple([
-# 		("Details", {
-# 			'fields' : ('employee_name',),
-# 		},)
-# 	] + get_employee_payslip_fieldsets()
-# 	+ [('Finance Details',{
-# 			'fields' : (
-# 				('gross_income', 'net_income'),
-# 				),
-# 		})]
-# 	)
+	form = get_employee_payslip_form()
+	fieldsets = tuple([
+		("Details", {
+			'fields' : ('employee_name',),
+		},)
+	] + get_employee_payslip_fieldsets()
+	+ [('Finance Details',{
+			'fields' : (
+				('gross_income', 'net_income'),
+				),
+		})]
+	)
 
 
 	
@@ -188,4 +188,4 @@ def get_employee_payslip_fieldsets():
 
 
 
-# admin.site.register(EmployeePayslip, EmployeePayslipAdmin)
+admin.site.register(EmployeePayslip, EmployeePayslipAdmin)

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from NGOMgt import settings
-# from dynamic_models import *
+
 
 # Create your models here.
 
@@ -117,14 +117,14 @@ class PayslipHead(models.Model):
 
 
 # EmployeePayslip = create_dynamic_employee_payslip()
-
+from dynamic_models import *
 
 
 
 # SIGNALS
-# from .signals import *
+from .signals import *
 
-# models.signals.post_delete.connect(post_delete_payslip_signal, PayslipHead, dispatch_uid = "post_delete_id_1")
-# models.signals.pre_delete.connect(pre_delete_payslip_signal, PayslipHead, dispatch_uid = "pre_delete_id_1")
-# models.signals.post_save.connect(post_save_payslip_signal, PayslipHead, dispatch_uid = "post_save_id_1")
-# models.signals.pre_save.connect(pre_save_payslip_signal, PayslipHead, dispatch_uid = "pre_save_id_1")
+models.signals.post_delete.connect(post_delete_payslip_signal, PayslipHead, dispatch_uid = "post_delete_id_1")
+models.signals.pre_delete.connect(pre_delete_payslip_signal, PayslipHead, dispatch_uid = "pre_delete_id_1")
+models.signals.post_save.connect(post_save_payslip_signal, PayslipHead, dispatch_uid = "post_save_id_1")
+models.signals.pre_save.connect(pre_save_payslip_signal, PayslipHead, dispatch_uid = "pre_save_id_1")

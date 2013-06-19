@@ -1,0 +1,607 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"dy",
+				"dynamic_models  (module)"
+			],
+			[
+				"__",
+				"__unicode__"
+			],
+			[
+				"em",
+				"employee_name"
+			],
+			[
+				"Em",
+				"EmployeePayslip"
+			],
+			[
+				"uni",
+				"unicode_return"
+			],
+			[
+				"Text",
+				"TextInput  (class)"
+			],
+			[
+				"field",
+				"fields"
+			],
+			[
+				"dedu",
+				"deduction_row"
+			],
+			[
+				"in",
+				"income_row"
+			],
+			[
+				"ded",
+				"deduction_count"
+			],
+			[
+				"inco",
+				"income_row"
+			],
+			[
+				"inc",
+				"income_count"
+			],
+			[
+				"income",
+				"income_row"
+			],
+			[
+				"get",
+				"get_employee_payslip_fieldsets"
+			],
+			[
+				"ret",
+				"retData"
+			],
+			[
+				"head",
+				"head_name"
+			],
+			[
+				"fied",
+				"fieldsets"
+			],
+			[
+				"a",
+				"all"
+			],
+			[
+				"H",
+				"HRMS"
+			],
+			[
+				"dun",
+				"dumps  (function)"
+			],
+			[
+				"aja",
+				"ajax_reqs"
+			],
+			[
+				"TEMPLA",
+				"TEMPLATE_CONTEXT_PROCESSORS"
+			],
+			[
+				"ex",
+				"except"
+			],
+			[
+				"e",
+				"email"
+			],
+			[
+				"ins",
+				"instance_data"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"ti",
+				"this	$(this)"
+			],
+			[
+				"key",
+				"keyup  (function)"
+			],
+			[
+				"T",
+				"TextInput  (class)"
+			],
+			[
+				"lo",
+				"login_required"
+			],
+			[
+				"co",
+				"contrib  (module)"
+			],
+			[
+				"dyna",
+				"dynamic"
+			],
+			[
+				"mo",
+				"model_attrs"
+			],
+			[
+				"re",
+				"render_to_response  (function)"
+			],
+			[
+				"sup",
+				"super"
+			],
+			[
+				"V",
+				"ValidationError"
+			],
+			[
+				"Emplo",
+				"Employee"
+			],
+			[
+				"Emp",
+				"Employee"
+			],
+			[
+				"head_",
+				"head_name"
+			],
+			[
+				"Pay",
+				"PayslipHead"
+			],
+			[
+				"_",
+				"__init__  (function)"
+			],
+			[
+				"PayslipH",
+				"PayslipHeadForm"
+			],
+			[
+				"E",
+				"EmployeePayslipForm"
+			],
+			[
+				"hea",
+				"head_name"
+			],
+			[
+				"In",
+				"IntegerField  (class)"
+			],
+			[
+				"dat",
+				"data_fields"
+			],
+			[
+				"mode",
+				"model_forms  (module)"
+			],
+			[
+				"wri",
+				"write_file"
+			],
+			[
+				"Employee",
+				"EmployeePayslip"
+			],
+			[
+				"Mo",
+				"ModelForm	ModelForm"
+			],
+			[
+				"Mod",
+				"ModelForm	ModelForm"
+			],
+			[
+				"db",
+				"db_updated"
+			],
+			[
+				"del",
+				"del_col"
+			],
+			[
+				"po",
+				"post_save  (variable)"
+			],
+			[
+				"LA",
+				"LAST_SCHEMA"
+			],
+			[
+				"impo",
+				"import"
+			],
+			[
+				"C",
+				"CURRENT_SCHEMA"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"crea",
+				"create_model"
+			],
+			[
+				"dyn",
+				"dynamic_models_path"
+			],
+			[
+				"P",
+				"Payslip"
+			],
+			[
+				"pos",
+				"post_save_payslip_signal"
+			],
+			[
+				"form",
+				"forms"
+			],
+			[
+				"ad",
+				"admin_view"
+			],
+			[
+				"Re",
+				"RequestContext"
+			],
+			[
+				"o",
+				"objects"
+			],
+			[
+				"sef",
+				"self"
+			],
+			[
+				"req",
+				"request"
+			],
+			[
+				"Model",
+				"ModelAdmin"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"Inc",
+				"IncomeHead"
+			],
+			[
+				"pro",
+				"project_name"
+			],
+			[
+				"CH",
+				"CharField"
+			],
+			[
+				"widg",
+				"widgets"
+			],
+			[
+				"auto",
+				"auto_now_add"
+			],
+			[
+				"ME",
+				"MEDIA_URL"
+			],
+			[
+				"Empl",
+				"EmployeeDetailsInline"
+			],
+			[
+				"templa",
+				"templates"
+			],
+			[
+				"ma",
+				"max_length"
+			],
+			[
+				"PRO",
+				"PROJECT_PATH"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"ad",
+				"Project: Add Folder"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"a",
+				"Project: Add Folder"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 602.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/wish/djangoProjects/NGOMgt/hrms/model_forms.py",
+		"/home/wish/djangoProjects/NGOMgt/hrms/dynamic_models.py",
+		"/home/wish/djangoProjects/NGOMgt/NGOMgt/settings.py",
+		"/home/wish/djangoProjects/NGOMgt/hrms/models.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/admin.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/model_forms.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/static/HRMS/js/autocomplete.js",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/dynamic.py",
+		"/home/wish/djangoProjects/NGOMgt/ajax_reqs/views.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/signals.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/dynamic_models.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/models.py",
+		"/home/wish/Desktop/django/db/models/base.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/dynamic_model_gen.py",
+		"/home/wish/Desktop/django/contrib/admin/options.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/extra_attrs.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/static/HRMS/css/hrms_style.css",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/context_processors.py",
+		"/home/wish/djangoProjects/NGOMgt/static/HRMS/js/autocomplete.js",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_form.html",
+		"/home/wish/djangoProjects/NGOMgt/templates/admin/HRMS/EmployeePayslip/change_form.html",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/static/js/autocomplete.js",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/index.html",
+		"/home/wish/djangoProjects/NGOMgt/ajax_reqs/urls.py",
+		"/home/wish/djangoProjects/NGOMgt/NGOMgt/urls.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/urls.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/static/autocomplete.js",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/admin_forms.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/formfields.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/templates/mytemplate.html",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/views.py",
+		"/home/wish/djangoProjects/NGOMgt/TODO",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list.html",
+		"/home/wish/Desktop/django/contrib/admin/views/main.py",
+		"/home/wish/djangoProjects/NGOMgt/manage.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/forms.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/forms/forms.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/forms/__init__.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/base_site.html",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/mytemplate.html",
+		"/home/wish/djangoProjects/NGOMgt/NGOMgt/admin_view.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/base.html",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/app_index.html",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/filter.html",
+		"/home/wish/Desktop/test.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list_results.html",
+		"/home/wish/Desktop/django/contrib/admin/templatetags/admin_list.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templatetags/grp_tags.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templatetags/template_decor_tags.py",
+		"/home/wish/djangoProjects/NGOMgt/static/my_static/css/index.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/static/grappelli/stylesheets/mueller/grid/output-rtl.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/static/grappelli/stylesheets/rtl.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/static/grappelli/stylesheets/screen.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/static/grappelli/stylesheets/mueller/screen.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/static/grappelli/stylesheets/mueller/grid/output.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/includes_grappelli/header.html",
+		"/home/wish/djangoProjects/NGOMgt/Accounts/admin.py",
+		"/home/wish/djangoProjects/NGOMgt/Project/admin.py",
+		"/home/wish/djangoProjects/NGOMgt/Project/models.py",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/templatetags/customAdminFilters.py",
+		"/home/wish/djangoProjects/NGOMgt/Accounts/models.py",
+		"/home/wish/djangoProjects/NGOMgt/templates/admin/includes/fieldset.html",
+		"/home/wish/djangoProjects/NGOMgt/static/grappelli/stylesheets/mueller/grid/output-rtl.css",
+		"/home/wish/djangoProjects/NGOMgt/static/grappelli/stylesheets/mueller/grid/output.css",
+		"/home/wish/djangoProjects/NGOMgt/static/grappelli/stylesheets/rtl.css",
+		"/home/wish/djangoProjects/NGOMgt/static/grappelli/stylesheets/screen.css",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list_filter_sidebar.html",
+		"/home/wish/djangoProjects/NGOMgt/HRMS/templatetags/__init__.py",
+		"/home/wish/djangoProjects/NGOMgt/NGOMgt/templatetags/__init__.py",
+		"/home/wish/djangoProjects/NGOMgt/templates/admin/delete_selected_confirmation.html",
+		"/home/wish/djangoProjects/NGOMgt/templates/admin/filter.html",
+		"/home/wish/djangoProjects/testproj/testproj/settings.py",
+		"/home/wish/djangoProjects/testproj/testproj/urls.py"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"PayslipHead",
+			"__module__",
+			"mediaDef",
+			"__module__",
+			"ModelAdmin",
+			"editable=False",
+			"income",
+			"payslip",
+			"Payslip",
+			"widget",
+			"Payslip",
+			"PayslipAdmin",
+			"Payslip",
+			"CURRENT_SCHEMA",
+			"print",
+			"from django.db import models\nfrom django.utils.translation import ugettext_lazy as _\n",
+			"name",
+			"six",
+			"six.",
+			"update_wrapper",
+			"view",
+			"url",
+			"site_admin",
+			"EmployeePayslip",
+			"):\n",
+			"model(",
+			"self.model(",
+			"self.model",
+			"change_view",
+			"g-d-6",
+			"\n",
+			"grp-module",
+			"is_popup",
+			")",
+			"Recieve",
+			"Income",
+			"Project",
+			"required",
+			"Stacked",
+			"StackedInline",
+			"''),",
+			"    '"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"filt",
+				"NGOMgt/grappelli/templates/admin/filter.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 280.0,
+	"status_bar_visible": true
+}

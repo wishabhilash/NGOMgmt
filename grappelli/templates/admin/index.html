@@ -1,0 +1,93 @@
+{% extends "admin/base_site.html" %}
+
+<!-- LOADING -->
+{% load i18n grp_tags log template_decor_tags%}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/my_static/css/index.css" text="text/css" media="screen">
+{% endblock %}
+
+
+<!-- JAVASCRIPTS -->
+{% block javascripts %}
+    {{ block.super }}
+{% endblock %}
+
+<!-- COLTYPE/BODYCLASS-- >
+{% block bodyclass %}dashboard{% endblock %}
+{% block content-class %}content-grid{% endblock %}
+
+<!-- BREADCRUMBS -->
+{% block breadcrumbs %}
+    <ul class="grp-horizontal-list">
+        <li>{% trans "Home" %}</li>
+    </ul>
+{% endblock %}
+{% block content_title %}
+    {% if title %}
+        <header><h1>{{ title }}</h1></header>
+    {% endif %}
+{% endblock %}
+
+<!-- CONTENT -->
+{% block content %}
+    <div class="g-d-c">
+        <div class="g-d-12 g-d-f">
+            <table>
+            
+            {% for app in app_list %}
+                {% if forloop.counter0|row_mod == 0 %}
+                    <tr>
+                {% elif forloop.counter0|row_mod == 3 %}
+                    </tr>
+                {% endif %}
+                <td>
+                    {% if not debug %}
+                        <div class="grp-module app-div-module" id="app_{{ app.name|lower }}">
+                            <a href="{{ app.app_url }}" class="grp-section"><img src="/static/my_static/images/{{ app.name|icon_name }}" class="app-icons-module"></a>
+                            <h2><a href="{{ app.app_url }}" class="grp-section">{{ app.name|purify_name }}</a></h2>
+                        </div>
+                    {% else %}
+                        {% if not app.name == "Sites" %}
+                        <div class="grp-module" id="app_{{ app.name|lower }}">
+                            <a href="{{ app.app_url }}" class="grp-section"><img src="/static/my_static/images/{{ app.name|icon_name }}" class="app-icons-module"></a>
+                                <h2><a href="{{ app.app_url }}" class="grp-section">{{ app.name|purify_name }}</a></h2>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                    
+            {% empty %}
+                <p>{% trans "You don´t have permission to edit anything." %}</p>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="g-d-6 g-d-l">
+            <div class="grp-module" id="grp-recent-actions-module">
+                <h2>{% trans 'Recent Actions' %}</h2>
+                <div class="grp-module">
+                    <h3>{% trans 'My Actions' %}</h3>
+                    {% get_admin_log 10 as admin_log for_user user %}
+                    {% if not admin_log %}
+                        <div class="grp-row"><p>{% trans 'None available' %}</p></div>
+                    {% else %}
+                        <ul class="grp-listing-small">
+                            {% for entry in admin_log %}
+                                <li class="grp-row{% if entry.is_addition %} grp-add-link{% endif %}{% if entry.is_change %} grp-change-link{% endif %}{% if entry.is_deletion %} grp-delete-link{% endif %}">
+                                    {% if entry.is_deletion %}
+                                        <span>{{ entry.object_repr }}</span>
+                                    {% else %}
+                                        <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                                    {% endif %}
+                                    <span class="grp-font-color-quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

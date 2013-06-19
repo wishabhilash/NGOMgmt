@@ -7,6 +7,8 @@ class EmployeePayslip(models.Model):
 	
 	payslip_ta = models.IntegerField(null=True)
 	payslip_la = models.IntegerField(null=True)
+	payslip_da = models.IntegerField(null=True)
+	payslip_ma = models.IntegerField(null=True)
 	class Meta:
 		verbose_name = _('EmployeePayslip')
 		verbose_name_plural = _('EmployeePayslips')

@@ -9,7 +9,7 @@ def CharField(max_length=200):
 
 imports = """from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from models_static import *\n\n"""
+from models import *\n\n"""
 
 model_header = """class %s(models.Model):\n"""
 model_footer = """\tclass Meta:

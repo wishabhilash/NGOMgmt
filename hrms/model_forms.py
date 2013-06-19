@@ -96,5 +96,5 @@ def get_employee_payslip_form():
 	}
 
 	attrs.update(get_attrs())
-
+	# print attrs
 	return type('EmployeePayslipForm', (forms.ModelForm,), attrs)

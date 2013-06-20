@@ -58,27 +58,36 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 	full_name.short_description = "Name"
 
+	def save_model(self, request, obj, form, change):
+		super(EmployeeAdmin, self).save_model(request, obj, form, change)
+		obj.emp_id = "EMP" + str(obj.id)
+		obj.save()
 
-	# def get_urls(self):
-	# 	urls = super(EmployeeAdmin, self).get_urls()
-	# 	my_urls = patterns('',
-	# 		(r'/HRMS/employee/$', self.admin_site.admin_view(self.employee_view)),
-	# 	)
-	# 	return my_urls + urls
 
-	# def employee_view(self,request, id):
-	# 	print "working"
 
-	# def review(self, request, id):
- #        entry = MyEntry.objects.get(pk=id)
- 
- #        return render_to_response(self.review_template, {
- #            'title': 'Review entry: %s' % entry.title,
- #            'entry': entry,
- #            'opts': self.model._meta,
- #            'root_path': self.admin_site.root_path,
- #        }, context_instance=RequestContext(request))
+	def get_urls(self):
+		from django.conf.urls.defaults import patterns, url
+		def wrap(view):
+			def wrapper(*args, **kwargs):
+				return self.admin_site.admin_view(view)(*args, **kwargs)
+			return update_wrapper(wrapper, view)
 
+		info = self.model._meta.app_label, self.model._meta.module_name
+
+		urls = super(EmployeeAdmin, self).get_urls()
+		my_urls = patterns('',
+			url(r'^download/$',
+				wrap(self.employee_view),
+				name='%s_%s_new' % info),
+		)
+		# print my_urls + urls
+		return my_urls + urls
+
+	def employee_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+		res.template_name = 'mytemplate.html'
+
+		return res
 
 
 
@@ -166,32 +175,29 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 
 	
 
-	# def get_urls(self):
-	# 	from django.conf.urls.defaults import patterns, url
-	# 	def wrap(view):
-	# 		def wrapper(*args, **kwargs):
-	# 			return self.admin_site.admin_view(view)(*args, **kwargs)
-	# 		return update_wrapper(wrapper, view)
+	def get_urls(self):
+		from django.conf.urls.defaults import patterns, url
+		def wrap(view):
+			def wrapper(*args, **kwargs):
+				return self.admin_site.admin_view(view)(*args, **kwargs)
+			return update_wrapper(wrapper, view)
 
-	# 	info = self.model._meta.app_label, self.model._meta.module_name
+		info = self.model._meta.app_label, self.model._meta.module_name
 
-	# 	urls = super(EmployeePayslipAdmin, self).get_urls()
-	# 	my_urls = patterns('',
-	# 		url(r'^new/\d/$',
-	# 			wrap(self.employee_view),
-	# 			name='%s_%s_new' % info),
-	# 	)
-	# 	# print my_urls + urls
-	# 	return my_urls + urls
+		urls = super(EmployeePayslipAdmin, self).get_urls()
+		my_urls = patterns('',
+			url(r'^download/$',
+				wrap(self.employee_view),
+				name='%s_%s_new' % info),
+		)
+		# print my_urls + urls
+		return my_urls + urls
 
-	# def employee_view(self,request):
-	# 	print "working"
-	# 	return render_to_response(
-	# 		'mytemplate.html',
-	# 		{'list' : Employee.objects.all()},
-	# 		RequestContext(request,{}),
-	# 		)
+	def employee_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+		res.template_name = 'mytemplate.html'
 
+		return res
 
 
 admin.site.register(EmployeePayslip, EmployeePayslipAdmin)

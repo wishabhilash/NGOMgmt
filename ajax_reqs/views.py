@@ -11,7 +11,7 @@ from django.utils import simplejson
 def employee_ajax(request):
 	query_data = request.REQUEST['filter']
 	query_num = request.REQUEST['pagesize']
-	data = Employee.objects.filter(Q(first_name__istartswith = query_data) | Q(last_name__istartswith = query_data))[:int(query_num)]
+	data = Employee.objects.filter(Q(emp_id__istartswith = query_data) | Q(first_name__istartswith = query_data) | Q(last_name__istartswith = query_data))[:int(query_num)]
 	jsonp = request.REQUEST['jsonp']
 	print len(data)
 	to_json = {

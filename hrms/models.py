@@ -128,3 +128,6 @@ models.signals.post_delete.connect(post_delete_payslip_signal, PayslipHead, disp
 models.signals.pre_delete.connect(pre_delete_payslip_signal, PayslipHead, dispatch_uid = "pre_delete_id_1")
 models.signals.post_save.connect(post_save_payslip_signal, PayslipHead, dispatch_uid = "post_save_id_1")
 models.signals.pre_save.connect(pre_save_payslip_signal, PayslipHead, dispatch_uid = "pre_save_id_1")
+
+
+models.signals.post_save.connect(post_save_employee_signal, Employee, dispatch_uid = "post_save_id_1")

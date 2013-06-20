@@ -26,13 +26,18 @@
                         response($.map(data.users, function(el, index) {
                             return {
                                 value: el.display_name,
-                                avatar: "http://www.gravatar.com/avatar/" +
-                                    el.email_hash
+                                avatar: '/media/' + el.display_pic,
+                                id : el.id
                             };
                         }));
                     }
                 });
+            },
+            
+            select: function(e, ui){
+                $('#ajax-search-field').attr("value",ui.item.id);
             }
+
         }).data("autocomplete")._renderItem = function (ul, item) {
             return $("<li />")
                 .data("item.autocomplete", item)
@@ -41,3 +46,4 @@
         };    
     });
 })(grp.jQuery);
+

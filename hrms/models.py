@@ -1,7 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from NGOMgt import settings
-
+from hashlib import sha256
+import os
+import base64
 
 # Create your models here.
 
@@ -19,6 +21,14 @@ from NGOMgt import settings
     
 # 		def __unicode__(self):
 # 			pass
+
+
+def upload_and_rename(instance, filename):
+	path = "images"
+	ext = filename.split('.')[-1]
+	new_filename = base64.b64encode(sha256(instance.email).digest()).replace('/','') + '.' + ext
+	print os.path.join(path, new_filename)
+	return os.path.join(path, new_filename)
             
 
 
@@ -36,7 +46,7 @@ class Employee(models.Model):
 	mother_name = models.CharField(max_length=200, blank=True)
 	blood_group = models.CharField(max_length=5, blank=True)
 	nationality = models.CharField(max_length=30)
-	photo = models.ImageField(upload_to=settings.MEDIA_URL, blank=True)
+	photo = models.ImageField(upload_to=upload_and_rename, blank=True)
 
 	# JOB DETAILS
 	designation = models.CharField(max_length=100, blank=True)
@@ -46,7 +56,7 @@ class Employee(models.Model):
 
 	
 	# CONTACT DETAILS
-	email = models.EmailField(max_length=200, blank=True)
+	email = models.EmailField(max_length=200)
 	home_address = models.TextField(max_length=400, blank=True)
 	phone_no = models.CharField(max_length=20,help_text='Enter your mobile number', blank=True)
 	
@@ -63,12 +73,18 @@ class Employee(models.Model):
 	id_card_no = models.CharField(max_length=25, blank=True)
 
 
+	def clean(self):
+		print self.photo
+
 	class Meta:
 		verbose_name = _('Employee Details')
 		verbose_name_plural = _('Employees Details')
 
 	def __unicode__(self):
 		return "%s %s %s" % (self.first_name, self.middle_name, self.last_name)
+
+
+
 
 	
 

@@ -89,6 +89,7 @@ def get_employee_payslip_form():
 		'employee_name' : forms.CharField(max_length=50,
 			widget = CustomTextInput({
 				'id' : 'ajax-search-field',
+				'value' : "",
 				})),
 		'gross_income' : forms.CharField(max_length=50),
 		'net_income' : forms.CharField(max_length=50),

@@ -175,10 +175,10 @@
                     <!--{% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}-->
                     {# <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> #}
                     {% if pdf_enable %}
-                        <li><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as PDF" %}"/></li>
+                        <li><a href="pdf"><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as PDF" %}"/></a></li>
                     {% endif %}
-                    {% if xml_enable %}
-                        <li><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as XML" %}"/></li>
+                    {% if excel_enable %}
+                        <li><a href="excel"><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as Excel" %}"/></a></li>
                     {% endif %}
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}
                 </ul>

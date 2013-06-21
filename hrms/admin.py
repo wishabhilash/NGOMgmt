@@ -7,6 +7,8 @@ from django.template import RequestContext
 from django.http import HttpResponse
 from .models import *
 from .model_forms import *
+from reportlab.pdfgen import canvas
+import xlwt
 
 
 class EmployeeAdmin(admin.ModelAdmin):
@@ -167,8 +169,10 @@ def get_employee_payslip_fieldsets():
 class EmployeePayslipAdmin(admin.ModelAdmin):
 	"""docstring for PayslipAdmin"""
 	
+	search_fields = ['employee_name__emp_id','employee_name__first_name','employee_name__last_name']	
 	form = get_employee_payslip_form()
 	list_display = [field.name for field in EmployeePayslip._meta.fields if field.name.lower() != "id"] + ['net_income', 'gross_income']
+	actions = ('download_selected_as_pdf',)
 	fieldsets = tuple([
 		("Details", {
 			'fields' : ('employee_name_mask','employee_name'),
@@ -181,15 +185,32 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		})]
 	)
 
+############################# TO DO ########################################
 	def net_income(self, obj):
+		# TO DO
 		heads = PayslipHead.objects.all()
+		return ""
 		
 	net_income.short_description = "Net Income"
 
+
 	def gross_income(self, obj):
+		# TO DO
+		heads = PayslipHead.objects.all()
+		mydic = {"payslip_" + head.head_name.lower() : head.head_type for head in heads}
+		fields = [field.name for field in obj._meta.fields if (field.name.lower() != "employee_name" and field.name.lower() != "id")]
+		gross = 0
+		# gross + obj. for field in fields 
 		return ""
 	gross_income.short_description = "Gross Income"
-	
+
+
+	def download_selected_as_pdf(self,request,queryset):
+		pass
+	download_selected_as_pdf.short_description = "Download selected as PDF"
+
+#########################################################################
+
 	def get_urls(self):
 		from django.conf.urls.defaults import patterns, url
 		def wrap(view):
@@ -204,6 +225,12 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 			url(r'^download/$',
 				wrap(self.download_view),
 				name='%s_%s_new' % info),
+			url(r'^download/pdf/$',
+				wrap(self.download_as_pdf_view),
+				name='%s_%s_new' % info),
+			url(r'^download/excel/$',
+				wrap(self.download_as_excel_view),
+				name='%s_%s_new' % info),
 		)
 		# print my_urls + urls
 		return my_urls + urls
@@ -212,9 +239,34 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		res = self.changelist_view(request, extra_context = extra_context)
 		res.template_name = 'mytemplate.html'
 		res.context_data['pdf_enable'] = True
-		res.context_data['xml_enable'] = True
-
+		res.context_data['excel_enable'] = True
 		return res
+
+	def download_as_pdf_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+		response = HttpResponse(content_type = 'application/pdf')
+		response['Content-Disposition'] = 'attachment; filename="pdfreport.pdf"'
+
+		pdf_canvas = canvas.Canvas(response)
+		pdf_canvas.drawString(100,100,"Hello world")
+		pdf_canvas.showPage()
+		pdf_canvas.save()
+		return response
+	
+	def download_as_excel_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+
+		book = xlwt.Workbook(encoding='utf8')
+		sheet = book.add_sheet("untitled")
+
+		default_style = xlwt.Style.default_style
+		datetime_style = xlwt.easyxf(num_format_str = 'dd/mm/yyyy hh:mm')
+		date_style = xlwt.easyxf(num_format_str = 'dd/mm/yyyy')
+
+		response = HttpResponse(content_type='application/vnd.ms-excel')
+		response['Content-Disposition'] = 'attachment; filename="xlreport.xls"'
+		book.save(response)
+		return response
 
 
 

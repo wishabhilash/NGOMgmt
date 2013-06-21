@@ -4,6 +4,7 @@ from models import *
 
 class EmployeePayslip(models.Model):
 	employee_name = models.ForeignKey(Employee)
+	# issue_date = models.DateField(auto_now_add=True)
 	
 	payslip_ta = models.IntegerField(null=True)
 	payslip_la = models.IntegerField(null=True)

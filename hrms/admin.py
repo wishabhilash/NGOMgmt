@@ -58,27 +58,36 @@ class EmployeeAdmin(admin.ModelAdmin):
 
 	full_name.short_description = "Name"
 
+	def save_model(self, request, obj, form, change):
+		super(EmployeeAdmin, self).save_model(request, obj, form, change)
+		obj.emp_id = "EMP" + str(obj.id)
+		obj.save()
 
-	# def get_urls(self):
-	# 	urls = super(EmployeeAdmin, self).get_urls()
-	# 	my_urls = patterns('',
-	# 		(r'/HRMS/employee/$', self.admin_site.admin_view(self.employee_view)),
-	# 	)
-	# 	return my_urls + urls
 
-	# def employee_view(self,request, id):
-	# 	print "working"
 
-	# def review(self, request, id):
- #        entry = MyEntry.objects.get(pk=id)
- 
- #        return render_to_response(self.review_template, {
- #            'title': 'Review entry: %s' % entry.title,
- #            'entry': entry,
- #            'opts': self.model._meta,
- #            'root_path': self.admin_site.root_path,
- #        }, context_instance=RequestContext(request))
+	def get_urls(self):
+		from django.conf.urls.defaults import patterns, url
+		def wrap(view):
+			def wrapper(*args, **kwargs):
+				return self.admin_site.admin_view(view)(*args, **kwargs)
+			return update_wrapper(wrapper, view)
 
+		info = self.model._meta.app_label, self.model._meta.module_name
+
+		urls = super(EmployeeAdmin, self).get_urls()
+		my_urls = patterns('',
+			url(r'^download/$',
+				wrap(self.employee_view),
+				name='%s_%s_new' % info),
+		)
+		# print my_urls + urls
+		return my_urls + urls
+
+	def employee_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+		res.template_name = 'mytemplate.html'
+
+		return res
 
 
 
@@ -88,9 +97,15 @@ admin.site.register(Employee, EmployeeAdmin)
 
 class PayslipHeadAdmin(admin.ModelAdmin):
 	"""docstring for PayslipHeadAdmin"""
-	list_display = ('head_name','head_type')	
+	list_display = ('head_name','head_type')
 	form = get_payslip_head_form()
-		
+	actions = ['change_to_income']
+
+	
+	def change_to_income(self, request, queryset):
+		queryset.update(head_type = 'deduction')
+	change_to_income.short_description = "Mark selected as income"
+	
 
 admin.site.register(PayslipHead, PayslipHeadAdmin)
 
@@ -147,13 +162,16 @@ def get_employee_payslip_fieldsets():
 	return [income_fieldset, deduction_fieldset]
 
 
+
+
 class EmployeePayslipAdmin(admin.ModelAdmin):
 	"""docstring for PayslipAdmin"""
 	
 	form = get_employee_payslip_form()
+	list_display = [field.name for field in EmployeePayslip._meta.fields if field.name.lower() != "id"] + ['net_income', 'gross_income']
 	fieldsets = tuple([
 		("Details", {
-			'fields' : ('employee_name',),
+			'fields' : ('employee_name_mask','employee_name'),
 		},)
 	] + get_employee_payslip_fieldsets()
 	+ [('Finance Details',{
@@ -163,34 +181,41 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		})]
 	)
 
+	def net_income(self, obj):
+		heads = PayslipHead.objects.all()
+		
+	net_income.short_description = "Net Income"
 
+	def gross_income(self, obj):
+		return ""
+	gross_income.short_description = "Gross Income"
 	
+	def get_urls(self):
+		from django.conf.urls.defaults import patterns, url
+		def wrap(view):
+			def wrapper(*args, **kwargs):
+				return self.admin_site.admin_view(view)(*args, **kwargs)
+			return update_wrapper(wrapper, view)
 
-	# def get_urls(self):
-	# 	from django.conf.urls.defaults import patterns, url
-	# 	def wrap(view):
-	# 		def wrapper(*args, **kwargs):
-	# 			return self.admin_site.admin_view(view)(*args, **kwargs)
-	# 		return update_wrapper(wrapper, view)
+		info = self.model._meta.app_label, self.model._meta.module_name
 
-	# 	info = self.model._meta.app_label, self.model._meta.module_name
+		urls = super(EmployeePayslipAdmin, self).get_urls()
+		my_urls = patterns('',
+			url(r'^download/$',
+				wrap(self.download_view),
+				name='%s_%s_new' % info),
+		)
+		# print my_urls + urls
+		return my_urls + urls
 
-	# 	urls = super(EmployeePayslipAdmin, self).get_urls()
-	# 	my_urls = patterns('',
-	# 		url(r'^new/\d/$',
-	# 			wrap(self.employee_view),
-	# 			name='%s_%s_new' % info),
-	# 	)
-	# 	# print my_urls + urls
-	# 	return my_urls + urls
+	def download_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+		res.template_name = 'mytemplate.html'
+		res.context_data['pdf_enable'] = True
+		res.context_data['xml_enable'] = True
 
-	# def employee_view(self,request):
-	# 	print "working"
-	# 	return render_to_response(
-	# 		'mytemplate.html',
-	# 		{'list' : Employee.objects.all()},
-	# 		RequestContext(request,{}),
-	# 		)
+		return res
+
 
 
 

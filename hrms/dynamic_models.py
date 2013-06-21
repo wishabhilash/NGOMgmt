@@ -14,5 +14,5 @@ class EmployeePayslip(models.Model):
 		verbose_name_plural = _('EmployeePayslips')
 
 	def __unicode__(self):
-		return ""
+		return "%s %s" % (self.employee_name.first_name,self.employee_name.last_name)
 

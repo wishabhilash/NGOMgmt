@@ -1,8 +1,7 @@
 {% extends "admin/base_site.html" %}
 
-<!-- LOADING -->
-{% load url from future %}
-{% load admin_list i18n grp_tags customAdminFilters%}
+{% load admin_list i18n grp_tags %}
+{% load admin_urls %}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -123,85 +122,23 @@
 {% block bodyclass %}grp-change-list{% endblock %}
 {% block content-class %}{% endblock %}
 
-<!-- BREADCRUMBS -- >
+
 {% block breadcrumbs %}
     {% if not is_popup %}
         <ul class="grp-horizontal-list">
-            <li><a href="../../">{% trans "Home" %}</a></li>
-            <li><a href="../">{% trans app_label|capfirst|escape %}</a></li>
-            <li>{{ cl.opts.verbose_name_plural|capfirst }}</li>
+            <li><a href="../../../">{% trans "Home" %}</a></li>
+            <li><a href="../../">{% trans "HRMS" %}</a></li>
+            <li><a href="../">{% trans "Employee Payslip" %}</a></li>
+            {# <li><a href="../">{% trans app_label|capfirst|escape %}</a></li> #}
+            <li>{% trans "Download" %}</li>
         </ul>
     {% endif %}
 {% endblock %}
 
-<!-- CONTENT-TITLE -->
-{% block content_title %}
-    <h1>{{ cl.opts.verbose_name_plural|capfirst }}</h1>
-{% endblock %}
 
-<!-- OBJECT-TOOLS -->
-{% block object-tools %}
-    {% if has_add_permission %}
-        <ul class="grp-object-tools">
-            {% block object-tools-items %}
-                <li><a href="add/{% if is_popup %}?_popup=1{% endif %}" class="grp-add-link grp-state-focus">{% blocktrans with cl.opts.verbose_name as name %}Add {{ name }}{% endblocktrans %}</a></li>
-            {% endblock %}
-        </ul>
-    {% endif %}
-{% endblock %}
-
-<!-- CONTENT -->
 {% block content %}
-    {% if cl.search_fields or cl.has_filters or cl.date_hierarchy %}
-        <div class="grp-module">
-            <div class="grp-row">
-                <div class="l-2cr-fluid {% if cl.has_filters and cl.search_fields %}l-d-12{% else %}{% if cl.has_filters or cl.search_fields %}l-d-6{% endif %}{% endif %}">
-                    {% if cl.has_filters or cl.search_fields %}
-                        {% block aside %}
-                            <aside class="c-1">
-                                <header style="display:none"><h1>{% if cl.search_fields %}Search{% if cl.has_filters %} &amp; {% endif %}{% endif %}{% if cl.has_filters %}Filters{% endif %}</h1></header>
-                                <!-- SEARCH -->
-                                {% if cl.search_fields %}
-                                    {% block search %}
-                                        <div id="search" class="g-d-6 g-d-f">
-                                            {% search_form cl %}
-                                        </div>
-                                    {% endblock %}
-                                {% endif %}
-                                <!-- FILTERS -->
-                                {% if cl.has_filters %}
-                                    {% block filters %}
-                                        <div id="grp-filters" class="g-d-6 g-d-l">
-                                            <div class="grp-filter">
-                                                <div class="grp-pulldown-container">
-                                                    <a href="javascript://" class="grp-button grp-pulldown-handler">{% trans 'Filter' %}</a>
-                                                    <div class="grp-pulldown-content" style="display: none;">
-                                                        {% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% endblock %}
-                                {% endif %}
-                            </aside>
-                        {% endblock %}
-                    {% endif %}
-                    {% block pagination_top %}
-                        <div class="c-2">
-                            <!-- PAGINATION TOP -->
-                            {% pagination cl %}
-                        </div>
-                    {% endblock %}
 
-                </div>
-            </div>
-            <!-- DATE HIERARCHY -->
-            {% block date_hierarchy %}
-                {% if cl.date_hierarchy %}{% date_hierarchy cl %}{% endif %}
-            {% endblock %}
-        </div>
-    {% endif %}
-    <form id="grp-changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+<form id="grp-changelist-form" action="" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
         <section id="grp-changelist" class="{% if cl.list_editable %} grp-editable{% endif %}">
             <header style="display:none"><h1>Results</h1></header>
             <!-- POPUP -->
@@ -223,22 +160,26 @@
             {% endblock %}
         </section>
         <!-- PAGINATION BOTTOM -->
-        {% if not cl.result_count == 0 %}
+<!--        {% if not cl.result_count == 0 %}
             {% block pagination_bottom %}
                 <div class="grp-module">
                     <div class="grp-row">{% pagination cl %}</div>
                 </div>
             {% endblock %}
-        {% endif %}
+        {% endif %}-->
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
             <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
                 <header style="display:none"><h1>Submit Options</h1></header>
                 <ul>
-                    {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
+                    <!--{% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}-->
                     {# <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> #}
-                    <li><a href="{{ request.get_host|download_url }}"><input type="button" class="grp-button grp-default" name="_download" value="{% trans "Download" %}"/></a></li>
-
+                    {% if pdf_enable %}
+                        <li><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as PDF" %}"/></li>
+                    {% endif %}
+                    {% if xml_enable %}
+                        <li><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as XML" %}"/></li>
+                    {% endif %}
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}
                 </ul>
             </footer>

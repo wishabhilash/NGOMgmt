@@ -25,7 +25,7 @@ def pre_delete_payslip_signal(sender, **kwargs):
 	global LAST_DEL_SCHEMA
 	global NO_REPEAT
 	NO_REPEAT = False
-	LAST_DEL_SCHEMA = set([head.head_name for head in PayslipHead.objects.all()])
+	LAST_DEL_SCHEMA = set([head.head_name for head in sender.objects.all()])
 	print "In pre save"
 	print LAST_DEL_SCHEMA
 
@@ -40,7 +40,7 @@ def post_delete_payslip_signal(sender, **kwargs):
 		NO_REPEAT = True
 		print "In post save: LAST_SCHEMA"
 		print LAST_DEL_SCHEMA
-		heads = PayslipHead.objects.all()
+		heads = sender.objects.all()
 		CURRENT_SCHEMA = set([head.head_name for head in heads])
 		# print "In post save: CURRENT_SCHEMA"
 		del_cols = list(LAST_DEL_SCHEMA - CURRENT_SCHEMA)
@@ -59,7 +59,7 @@ def post_delete_payslip_signal(sender, **kwargs):
 
 def pre_save_payslip_signal(sender, **kwargs):
 	global LAST_ADD_SCHEMA
-	LAST_ADD_SCHEMA = set([head.head_name for head in PayslipHead.objects.all()])
+	LAST_ADD_SCHEMA = set([head.head_name for head in sender.objects.all()])
 	#print "In pre save"
 	#print LAST_ADD_SCHEMA
 
@@ -69,7 +69,7 @@ def post_save_payslip_signal(sender, **kwargs):
 	global LAST_ADD_SCHEMA
 	#print "In post save: LAST_ADD_SCHEMA"
 	print LAST_ADD_SCHEMA
-	heads = PayslipHead.objects.all()
+	heads = sender.objects.all()
 	CURRENT_SCHEMA = set([head.head_name for head in heads])
 	#print "In post save: CURRENT_SCHEMA"
 	print CURRENT_SCHEMA
@@ -85,3 +85,8 @@ def post_save_payslip_signal(sender, **kwargs):
 	if db_updated:
 		write_file(heads)
 
+
+
+def post_save_employee_signal(sender, **kwargs):
+	# print sender.
+	pass

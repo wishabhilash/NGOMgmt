@@ -2,7 +2,7 @@
 
 <!-- LOADING -->
 {% load url from future %}
-{% load admin_list i18n grp_tags %}
+{% load admin_list i18n grp_tags customAdminFilters%}
 
 <!-- STYLESHEETS -->
 {% block stylesheets %}
@@ -237,6 +237,8 @@
                 <ul>
                     {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
                     {# <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> #}
+                    <li><a href="{{ request.get_host|download_url }}"><input type="button" class="grp-button grp-default" name="_download" value="{% trans "Download" %}"/></a></li>
+
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}
                 </ul>
             </footer>

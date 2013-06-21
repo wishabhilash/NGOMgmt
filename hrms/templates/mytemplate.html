@@ -126,11 +126,11 @@
 {% block breadcrumbs %}
     {% if not is_popup %}
         <ul class="grp-horizontal-list">
-            <li><a href="../../../../">{% trans "Home" %}</a></li>
-            <li><a href="../../../">{% trans "HRMS" %}</a></li>
-            <li><a href="../../">{% trans "Employee Payslip" %}</a></li>
+            <li><a href="../../../">{% trans "Home" %}</a></li>
+            <li><a href="../../">{% trans "HRMS" %}</a></li>
+            <li><a href="../">{% trans "Employee Payslip" %}</a></li>
             {# <li><a href="../">{% trans app_label|capfirst|escape %}</a></li> #}
-            <li>New</li>
+            <li>{% trans "Download" %}</li>
         </ul>
     {% endif %}
 {% endblock %}
@@ -160,20 +160,26 @@
             {% endblock %}
         </section>
         <!-- PAGINATION BOTTOM -->
-        {% if not cl.result_count == 0 %}
+<!--        {% if not cl.result_count == 0 %}
             {% block pagination_bottom %}
                 <div class="grp-module">
                     <div class="grp-row">{% pagination cl %}</div>
                 </div>
             {% endblock %}
-        {% endif %}
+        {% endif %}-->
         <!-- SUBMIT ROW -->
         {% if cl.formset or action_form %}
             <footer id="submit" class="grp-module grp-submit-row grp-fixed-footer">
                 <header style="display:none"><h1>Submit Options</h1></header>
                 <ul>
-                    {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
+                    <!--{% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}-->
                     {# <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> #}
+                    {% if pdf_enable %}
+                        <li><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as PDF" %}"/></li>
+                    {% endif %}
+                    {% if xml_enable %}
+                        <li><input type="button" class="grp-button grp-default" name="_export" value="{% trans "Download as XML" %}"/></li>
+                    {% endif %}
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}
                 </ul>
             </footer>

@@ -9,11 +9,10 @@ class EmployeePayslip(models.Model):
 	payslip_la = models.IntegerField(null=True)
 	payslip_da = models.IntegerField(null=True)
 	payslip_ma = models.IntegerField(null=True)
-	payslip_ja = models.IntegerField(null=True)
 	class Meta:
 		verbose_name = _('EmployeePayslip')
 		verbose_name_plural = _('EmployeePayslips')
 
 	def __unicode__(self):
-		return ""
+		return "%s %s" % (self.employee_name.first_name,self.employee_name.last_name)
 

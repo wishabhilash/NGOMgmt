@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"down",
+				"download_url"
+			],
+			[
+				"pa",
+				"path  (module)"
+			],
+			[
+				"lis",
+				"list_display"
+			],
+			[
+				"cha",
+				"change_to_income"
+			],
+			[
+				"head",
+				"head_type"
+			],
+			[
+				"e",
+				"el"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"ME",
+				"MEDIA_ROOT"
+			],
+			[
+				"va",
+				"val"
+			],
+			[
+				"aj",
+				"ajax-search-field"
+			],
+			[
+				"up",
+				"upload_and_rename"
+			],
+			[
+				"sha",
+				"sha256"
+			],
+			[
+				"Q",
+				"QuerySet  (class)"
+			],
+			[
+				"query",
+				"query_words"
+			],
+			[
+				"emp",
+				"emp_id"
+			],
+			[
+				"Em",
+				"EmployeeAdmin"
+			],
+			[
 				"ret",
 				"ret_list"
 			],
@@ -22,10 +86,6 @@
 			[
 				"inco",
 				"income_row"
-			],
-			[
-				"Em",
-				"Employee"
 			],
 			[
 				"dy",
@@ -72,10 +132,6 @@
 				"get_employee_payslip_fieldsets"
 			],
 			[
-				"head",
-				"head_name"
-			],
-			[
 				"fied",
 				"fieldsets"
 			],
@@ -102,10 +158,6 @@
 			[
 				"ex",
 				"except"
-			],
-			[
-				"e",
-				"email"
 			],
 			[
 				"ins",
@@ -320,10 +372,6 @@
 				"auto_now_add"
 			],
 			[
-				"ME",
-				"MEDIA_URL"
-			],
-			[
 				"Empl",
 				"EmployeeDetailsInline"
 			],
@@ -344,6 +392,62 @@
 	"buffers":
 	[
 		{
+			"file": "hrms/models.py",
+			"settings":
+			{
+				"buffer_size": 4558,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "hrms/admin.py",
+			"settings":
+			{
+				"buffer_size": 5024,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/wish/Desktop/django/contrib/admin/options.py",
+			"settings":
+			{
+				"buffer_size": 65679,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/wish/Desktop/django/template/response.py",
+			"settings":
+			{
+				"buffer_size": 6214,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "hrms/model_forms.py",
+			"settings":
+			{
+				"buffer_size": 2513,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ajax_reqs/views.py",
+			"settings":
+			{
+				"buffer_size": 1152,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/wish/Desktop/django/contrib/admin/templatetags/admin_list.py",
+			"settings":
+			{
+				"buffer_size": 15888,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "NGOMgt/settings.py",
 			"settings":
 			{
@@ -352,58 +456,34 @@
 			}
 		},
 		{
-			"file": "hrms/models.py",
+			"file": "hrms/static/hrms/js/autocomplete.js",
 			"settings":
 			{
-				"buffer_size": 4104,
+				"buffer_size": 1542,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "hrms/admin.py",
+			"file": "grappelli/templates/admin/change_list.html",
 			"settings":
 			{
-				"buffer_size": 4568,
+				"buffer_size": 12284,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "hrms/model_forms.py",
+			"file": "hrms/templatetags/customAdminFilters.py",
 			"settings":
 			{
-				"buffer_size": 2383,
+				"buffer_size": 435,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "hrms/signals.py",
+			"file": "hrms/templates/mytemplate.html",
 			"settings":
 			{
-				"buffer_size": 2276,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "hrms/dynamic_models.py",
-			"settings":
-			{
-				"buffer_size": 506,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "ajax_reqs/views.py",
-			"settings":
-			{
-				"buffer_size": 790,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "hrms/dynamic.py",
-			"settings":
-			{
-				"buffer_size": 713,
+				"buffer_size": 9206,
 				"line_ending": "Unix"
 			}
 		}
@@ -456,12 +536,19 @@
 	},
 	"file_history":
 	[
-		"/home/wish/djangoProjects/NGOMgt/hrms/extra_attrs.py",
+		"/home/wish/djangoProjects/NGOMgt/hrms/dynamic.py",
 		"/home/wish/djangoProjects/NGOMgt/hrms/dynamic_models.py",
-		"/home/wish/djangoProjects/NGOMgt/ajax_reqs/views.py",
+		"/home/wish/djangoProjects/NGOMgt/hrms/templatetags/customAdminFilters.py",
 		"/home/wish/djangoProjects/NGOMgt/NGOMgt/urls.py",
-		"/home/wish/djangoProjects/NGOMgt/hrms/model_forms.py",
 		"/home/wish/djangoProjects/NGOMgt/NGOMgt/settings.py",
+		"/home/wish/djangoProjects/NGOMgt/hrms/signals.py",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list.html",
+		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list_results.html",
+		"/home/wish/djangoProjects/NGOMgt/TODO",
+		"/home/wish/Desktop/django/contrib/admin/templates/admin/change_list.html",
+		"/home/wish/djangoProjects/NGOMgt/hrms/extra_attrs.py",
+		"/home/wish/djangoProjects/NGOMgt/ajax_reqs/views.py",
+		"/home/wish/djangoProjects/NGOMgt/hrms/model_forms.py",
 		"/home/wish/djangoProjects/NGOMgt/hrms/models.py",
 		"/home/wish/djangoProjects/NGOMgt/HRMS/admin.py",
 		"/home/wish/djangoProjects/NGOMgt/HRMS/model_forms.py",
@@ -488,8 +575,6 @@
 		"/home/wish/djangoProjects/NGOMgt/HRMS/formfields.py",
 		"/home/wish/djangoProjects/NGOMgt/HRMS/templates/mytemplate.html",
 		"/home/wish/djangoProjects/NGOMgt/HRMS/views.py",
-		"/home/wish/djangoProjects/NGOMgt/TODO",
-		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list.html",
 		"/home/wish/Desktop/django/contrib/admin/views/main.py",
 		"/home/wish/djangoProjects/NGOMgt/manage.py",
 		"/home/wish/djangoProjects/NGOMgt/HRMS/forms.py",
@@ -502,7 +587,6 @@
 		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/app_index.html",
 		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/filter.html",
 		"/home/wish/Desktop/test.py",
-		"/home/wish/djangoProjects/NGOMgt/grappelli/templates/admin/change_list_results.html",
 		"/home/wish/Desktop/django/contrib/admin/templatetags/admin_list.py",
 		"/home/wish/djangoProjects/NGOMgt/grappelli/templatetags/grp_tags.py",
 		"/home/wish/djangoProjects/NGOMgt/grappelli/templatetags/template_decor_tags.py",
@@ -547,6 +631,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"url",
+			"formset",
+			"_data",
+			"save(",
+			"simpletemplateres",
+			"changelist_view",
+			"templaterespon",
+			"result_headers",
 			"PayslipHeader",
 			"PayslipHead",
 			"__module__",
@@ -607,23 +699,77 @@
 	"groups":
 	[
 		{
-			"selected": 7,
+			"selected": 9,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "NGOMgt/settings.py",
+					"file": "hrms/models.py",
 					"settings":
 					{
-						"buffer_size": 6034,
+						"buffer_size": 4558,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4716,
-								4716
+								4558,
+								4558
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1879.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "hrms/admin.py",
+					"settings":
+					{
+						"buffer_size": 5024,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3479,
+								3479
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2516.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/wish/Desktop/django/contrib/admin/options.py",
+					"settings":
+					{
+						"buffer_size": 65679,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								56401,
+								56401
 							]
 						],
 						"settings":
@@ -633,30 +779,32 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2082.0,
+						"translation.y": 21598.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "hrms/models.py",
+					"buffer": 3,
+					"file": "/home/wish/Desktop/django/template/response.py",
 					"settings":
 					{
-						"buffer_size": 4104,
+						"buffer_size": 6214,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1630,
+								1630
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -665,46 +813,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "hrms/admin.py",
-					"settings":
-					{
-						"buffer_size": 4568,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3350,
-								3350
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2040.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "hrms/model_forms.py",
 					"settings":
 					{
-						"buffer_size": 2383,
+						"buffer_size": 2513,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2320,
-								2320
+								2055,
+								2055
 							]
 						],
 						"settings":
@@ -719,51 +840,26 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "hrms/signals.py",
+					"buffer": 5,
+					"file": "ajax_reqs/views.py",
 					"settings":
 					{
-						"buffer_size": 2276,
+						"buffer_size": 1152,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								280,
-								280
+								655,
+								655
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "hrms/dynamic_models.py",
-					"settings":
-					{
-						"buffer_size": 506,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								96,
-								96
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+							"translate_tabs_to_spaces": false,
+							"word_wrap": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -773,18 +869,130 @@
 				},
 				{
 					"buffer": 6,
-					"file": "ajax_reqs/views.py",
+					"file": "/home/wish/Desktop/django/contrib/admin/templatetags/admin_list.py",
 					"settings":
 					{
-						"buffer_size": 790,
+						"buffer_size": 15888,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								464,
-								464
+								434,
+								434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "NGOMgt/settings.py",
+					"settings":
+					{
+						"buffer_size": 6034,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2673,
+								2673
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 867.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "hrms/static/hrms/js/autocomplete.js",
+					"settings":
+					{
+						"buffer_size": 1542,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53,
+								53
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "grappelli/templates/admin/change_list.html",
+					"settings":
+					{
+						"buffer_size": 12284,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11858,
+								11858
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3732.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "hrms/templatetags/customAdminFilters.py",
+					"settings":
+					{
+						"buffer_size": 435,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								433,
+								433
 							]
 						],
 						"settings":
@@ -798,27 +1006,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "hrms/dynamic.py",
+					"buffer": 11,
+					"file": "hrms/templates/mytemplate.html",
 					"settings":
 					{
-						"buffer_size": 713,
+						"buffer_size": 9206,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								368,
-								368
+								8020,
+								8020
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2338.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -18,7 +18,7 @@ def employee_ajax(request):
 		data += list(Employee.objects.filter(Q(emp_id__istartswith = query) | Q(first_name__istartswith = query) | Q(last_name__istartswith = query))[:int(query_num)])
 	jsonp = request.REQUEST['jsonp']
 	to_json = {
-		'users' : [{'display_name' :user.first_name, 'display_pic' : user.photo.name, 'id' : str(user.id)} for user in data],
+		'users' : [{'display_name' :user.first_name + " " + user.last_name, 'display_pic' : user.photo.name, 'id' : str(user.id)} for user in data],
 	}
 	print jsonp + "(" + simplejson.dumps(to_json) + ")"
 	return HttpResponse(jsonp + "(" + simplejson.dumps(to_json) + ")", mimetype="application/json")

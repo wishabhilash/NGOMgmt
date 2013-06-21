@@ -85,14 +85,20 @@ def get_employee_payslip_form():
 		heads = PayslipHead.objects.all()
 		return {'payslip_'+head.head_name.lower() : forms.IntegerField(label=head.head_name.upper()) for head in heads}
 
+
 	attrs = {
-		'employee_name' : forms.CharField(max_length=50,
+		'employee_name_mask' : forms.CharField(max_length=50,
 			widget = CustomTextInput({
 				'id' : 'ajax-search-field',
 				'value' : "",
 				})),
-		'gross_income' : forms.CharField(max_length=50),
-		'net_income' : forms.CharField(max_length=50),
+		'employee_name' : forms.ModelChoiceField(queryset = Employee.objects.all()),
+		'gross_income' : forms.CharField(max_length=50, widget=forms.TextInput({
+				'disabled' : 'disabled',
+			}), required=False),
+		'net_income' : forms.CharField(max_length=50, widget=forms.TextInput({
+				'disabled' : 'disabled',
+			}), required=False),
 
 	}
 

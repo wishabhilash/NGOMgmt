@@ -97,9 +97,15 @@ admin.site.register(Employee, EmployeeAdmin)
 
 class PayslipHeadAdmin(admin.ModelAdmin):
 	"""docstring for PayslipHeadAdmin"""
-	list_display = ('head_name','head_type')	
+	list_display = ('head_name','head_type')
 	form = get_payslip_head_form()
-		
+	actions = ['change_to_income']
+
+	
+	def change_to_income(self, request, queryset):
+		queryset.update(head_type = 'deduction')
+	change_to_income.short_description = "Mark selected as income"
+	
 
 admin.site.register(PayslipHead, PayslipHeadAdmin)
 
@@ -156,13 +162,16 @@ def get_employee_payslip_fieldsets():
 	return [income_fieldset, deduction_fieldset]
 
 
+
+
 class EmployeePayslipAdmin(admin.ModelAdmin):
 	"""docstring for PayslipAdmin"""
 	
 	form = get_employee_payslip_form()
+	list_display = [field.name for field in EmployeePayslip._meta.fields if field.name.lower() != "id"] + ['net_income', 'gross_income']
 	fieldsets = tuple([
 		("Details", {
-			'fields' : ('employee_name',),
+			'fields' : ('employee_name_mask','employee_name'),
 		},)
 	] + get_employee_payslip_fieldsets()
 	+ [('Finance Details',{
@@ -172,9 +181,15 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		})]
 	)
 
+	def net_income(self, obj):
+		heads = PayslipHead.objects.all()
+		
+	net_income.short_description = "Net Income"
 
+	def gross_income(self, obj):
+		return ""
+	gross_income.short_description = "Gross Income"
 	
-
 	def get_urls(self):
 		from django.conf.urls.defaults import patterns, url
 		def wrap(view):
@@ -187,17 +202,21 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		urls = super(EmployeePayslipAdmin, self).get_urls()
 		my_urls = patterns('',
 			url(r'^download/$',
-				wrap(self.employee_view),
+				wrap(self.download_view),
 				name='%s_%s_new' % info),
 		)
 		# print my_urls + urls
 		return my_urls + urls
 
-	def employee_view(self,request, extra_context = None):
+	def download_view(self,request, extra_context = None):
 		res = self.changelist_view(request, extra_context = extra_context)
 		res.template_name = 'mytemplate.html'
+		res.context_data['pdf_enable'] = True
+		res.context_data['xml_enable'] = True
 
 		return res
+
+
 
 
 admin.site.register(EmployeePayslip, EmployeePayslipAdmin)

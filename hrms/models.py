@@ -81,7 +81,7 @@ class Employee(models.Model):
 		verbose_name_plural = _('Employees Details')
 
 	def __unicode__(self):
-		return "%s %s %s" % (self.first_name, self.middle_name, self.last_name)
+		return "%s %s" % (self.first_name, self.last_name)
 
 
 
@@ -98,6 +98,7 @@ class PayslipHead(models.Model):
 
 	def __unicode__(self):
 		return "%s" % self.head_name
+
 
 
 

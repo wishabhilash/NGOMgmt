@@ -17,7 +17,7 @@ model_footer = """\tclass Meta:
 		verbose_name_plural = _('%ss')
 
 	def __unicode__(self):
-		return ""
+		return self.employee_name
 
 """
 

@@ -22,6 +22,7 @@ model_footer = """\tclass Meta:
 """
 
 model_attrs = """	employee_name = models.ForeignKey(Employee)
+	# issue_date = models.DateField(auto_now_add=True)
 	
 """
 

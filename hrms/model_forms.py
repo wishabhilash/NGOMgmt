@@ -87,6 +87,7 @@ def get_employee_payslip_form():
 
 
 	attrs = {
+		# 'issue_date' : forms.DateField(required=False),
 		'employee_name_mask' : forms.CharField(max_length=50,
 			widget = CustomTextInput({
 				'id' : 'ajax-search-field',

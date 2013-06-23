@@ -176,11 +176,11 @@
                     {# <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> #}
                     
                     {% if excel_enable %}
-                        {% download_url request.get_full_path "Download as PDF" %}
+                        {% download_url request.get_full_path "Download as PDF" "pdf" %}
                     {% endif %}
 
                     {% if pdf_enable %}
-                        {% download_url request.get_full_path "Download as Excel" %}
+                        {% download_url request.get_full_path "Download as Excel" "excel" %}
                     {% endif %}
 
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}

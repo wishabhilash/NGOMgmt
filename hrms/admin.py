@@ -276,7 +276,6 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		res.template_name = 'mytemplate.html'
 		res.context_data['pdf_enable'] = True
 		res.context_data['excel_enable'] = True
-		res.context_data['host_name'] = ""
 		# print "I am printing ",request.get_full_path()
 		return res
 

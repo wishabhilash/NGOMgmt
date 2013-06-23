@@ -237,7 +237,7 @@
                 <ul>
                     {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
 
-                    {% download_url request.get_full_path "Download" %}
+                    {% download_url request.get_full_path "Download" "download%}
                     
                     
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}

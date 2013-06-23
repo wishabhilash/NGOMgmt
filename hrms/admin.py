@@ -9,6 +9,7 @@ from .models import *
 from .model_forms import *
 from reportlab.pdfgen import canvas
 import xlwt
+from django.contrib.admin.templatetags import admin_list
 
 
 class EmployeeAdmin(admin.ModelAdmin):
@@ -79,18 +80,53 @@ class EmployeeAdmin(admin.ModelAdmin):
 		urls = super(EmployeeAdmin, self).get_urls()
 		my_urls = patterns('',
 			url(r'^download/$',
-				wrap(self.employee_view),
+				wrap(self.download_view),
+				name='%s_%s_new' % info),
+			url(r'^download/pdf/$',
+				wrap(self.download_as_pdf_view),
+				name='%s_%s_new' % info),
+			url(r'^download/excel/$',
+				wrap(self.download_as_excel_view),
 				name='%s_%s_new' % info),
 		)
 		# print my_urls + urls
 		return my_urls + urls
 
-	def employee_view(self,request, extra_context = None):
+	def download_view(self,request, extra_context = None):
 		res = self.changelist_view(request, extra_context = extra_context)
 		res.template_name = 'mytemplate.html'
-
+		res.context_data['pdf_enable'] = True
+		res.context_data['excel_enable'] = True
 		return res
 
+	def download_as_pdf_view(self,request, extra_context = None):
+		cl = self.changelist_view(request, extra_context = extra_context)
+		response = HttpResponse(content_type = 'application/pdf')
+		response['Content-Disposition'] = 'attachment; filename="pdfreport.pdf"'
+		
+		# for header in admin_list.result_headers(cl):
+		# 	print header
+		
+		pdf_canvas = canvas.Canvas(response)
+		pdf_canvas.drawString(100,100,"Hello world")
+		pdf_canvas.showPage()
+		pdf_canvas.save()
+		return response
+	
+	def download_as_excel_view(self,request, extra_context = None):
+		res = self.changelist_view(request, extra_context = extra_context)
+
+		book = xlwt.Workbook(encoding='utf8')
+		sheet = book.add_sheet("untitled")
+
+		default_style = xlwt.Style.default_style
+		datetime_style = xlwt.easyxf(num_format_str = 'dd/mm/yyyy hh:mm')
+		date_style = xlwt.easyxf(num_format_str = 'dd/mm/yyyy')
+
+		response = HttpResponse(content_type='application/vnd.ms-excel')
+		response['Content-Disposition'] = 'attachment; filename="xlreport.xls"'
+		book.save(response)
+		return response
 
 
 admin.site.register(Employee, EmployeeAdmin)
@@ -240,14 +276,30 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		res.template_name = 'mytemplate.html'
 		res.context_data['pdf_enable'] = True
 		res.context_data['excel_enable'] = True
+		res.context_data['host_name'] = ""
+		# print "I am printing ",request.get_full_path()
 		return res
 
 	def download_as_pdf_view(self,request, extra_context = None):
-		res = self.changelist_view(request, extra_context = extra_context)
+		from reportlab.lib.units import inch
+
+		template_response = self.changelist_view(request, extra_context = extra_context)
+		cl = template_response.context_data['cl']
 		response = HttpResponse(content_type = 'application/pdf')
 		response['Content-Disposition'] = 'attachment; filename="pdfreport.pdf"'
+		
+		# for header in admin_list.result_headers(cl):
+		# 	print header['text']
+		# 	print header, "\n"
 
+		# for result in admin_list.results(cl):
+		# 	# for item in result:
+		# 	# 	print item
+		# 	print result
+		
 		pdf_canvas = canvas.Canvas(response)
+		pdf_canvas.translate(inch, inch)
+		pdf_canvas.setFont('Helvetica', 20)
 		pdf_canvas.drawString(100,100,"Hello world")
 		pdf_canvas.showPage()
 		pdf_canvas.save()

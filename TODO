@@ -1,6 +1,8 @@
-2. URL template filter issue
-3. Report sort url (all code modifications)
-4. Download report
+4. Download report/ prepare report
+
+
+
+
 5. Date Time support to PayslipAdmin
 6. Bootstrap datepicker integration
 7. Grappelli change_list table expand

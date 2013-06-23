@@ -236,9 +236,10 @@
                 <header style="display:none"><h1>Submit Options</h1></header>
                 <ul>
                     {% if action_form %}<li class="grp-float-left grp-changelist-actions">{% admin_actions %}</li>{% endif %}
-                    {# <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button> #}
-                    <li><a href="{{ request.get_host|download_url }}"><input type="button" class="grp-button grp-default" name="_download" value="{% trans "Download" %}"/></a></li>
 
+                    {% download_url request.get_full_path "Download" %}
+                    
+                    
                     {% if cl.formset %}<li><input type="submit" class="grp-button grp-default" name="_save" value="{% trans "Save" %}"/></li>{% endif %}
                 </ul>
             </footer>

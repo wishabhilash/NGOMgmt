@@ -1,0 +1,150 @@
+{% load admin_list i18n grp_tags customAdminFilters %}
+{% load admin_urls %}
+
+<html>
+<head>
+	<title>Payslip</title>
+	<style type="text/css">
+		*{
+			margin: auto;
+			border: 0;
+		}
+		#mydiv{
+			width: 650px;
+			height: 1000px;
+			border: 2px;
+			background-color: #D31818;
+			/*text-align: center;*/
+		}
+		
+
+
+		#id-slip, #id_company_name, #id_company_address{
+			text-align: center;
+		}
+
+		#id_company_address{
+			font-style: italic;
+		}
+		#id-earning-table, #id-deduction-table {
+			width: 500px;
+			border: 2px solid black;
+			border-collapse: collapse;
+		}
+
+		#id-employee-details{
+			width: 400px;
+			border: 2px solid black;
+		}
+
+		#id-earning-table tr td, #id-deduction-table tr td {
+			border: 1px solid black;
+			
+		}
+
+		.make-center{
+			text-align: center;
+		}
+
+		.make-bold{
+			font-weight: bold;
+		}
+
+		.clear{
+			height: 20px;
+			position: absolute;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="mydiv">
+		<div id="id_company_name"><h1>{{ company_name }}</h1></div>
+		<div id="id_company_address">
+			<pre>
+{{ company_address }}			
+</pre>
+		</div>
+		
+		<div id="id-slip"><h3>Salary Slip</h3></div>
+
+		<pre>
+
+		</pre>
+
+		<table id="id-employee-details">
+			<tr>
+				<td>Employee Name: </td><td>{{ employee_name }}</td>
+			</tr>
+			<tr>
+				<td>Designation: </td><td>{{ employee_designation }}</td>
+			</tr>
+			<tr>
+				<td>Date: </td><td>{{ month_year }}</td>
+			</tr>
+		</table>
+		
+		<pre>
+
+		</pre>
+		
+		<table id="id-earning-table">
+			<thead>
+				<tr class="make-center">
+					<th>Earnings</th><th>Amount</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr>
+					<td>TA</td><td class="make-center">12314</td>
+				</tr>
+				<tr>
+					<td>TA</td><td class="make-center">12314</td>
+				</tr>
+				<tr>
+					<td>TA</td><td class="make-center">12314</td>
+				</tr>
+				
+			</tbody>
+			<thead>
+				<tr>
+					<td class="make-bold">Gross Earning</td><th class="make-center">{{ gross_earning }}</th>
+				</tr>
+			</thead>
+		</table>
+		
+		<pre>
+
+		</pre>
+		
+		<table id="id-deduction-table">
+			<thead>
+				<tr class="make-center">
+					<th>Deductions</th><th>Amount</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+
+				<tr>
+					<td>TA</td><td class="make-center">12314</td>
+				</tr>
+				<tr>
+					<td>TA</td><td class="make-center">12314</td>
+				</tr>
+				<tr>
+					<td>TA</td><td class="make-center">12314</td>
+				</tr>
+			</tbody>
+			<thead>
+				<tr>
+					<td class="make-bold">Net Earning</td><th class="make-center">{{ net_earning }}</th>
+				</tr>
+			</thead>
+		</table>
+		
+	</div>
+	
+</body>
+</html>

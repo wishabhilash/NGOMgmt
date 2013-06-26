@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% for data_row in data_list %}
+	<tr>
+		{% for data in data_row %}
+			<td>{% trans data %}</td>
+		{% endfor %}
+	</tr>
+{% endfor %}

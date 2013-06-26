@@ -1,0 +1,16 @@
+{% load i18n customAdminFilters %}
+<footer class="grp-module grp-submit-row grp-fixed-footer">
+    <header style="display:none"><h1>Submit Options</h1></header>
+    <ul>
+
+        {% if show_edit %}
+         	{% download_url request.get_full_path "Edit" "edit" %}
+        {% endif %}
+
+        {% if download %}
+    		{% download_url request.get_full_path "Download as PDF" "download_payslip" %}
+    	{% endif %}
+        
+        
+    </ul>
+</footer>

@@ -31,7 +31,7 @@ class EmployeeAdmin(admin.ModelAdmin):
 						('gender','marital_status'),
 						('father_name','mother_name'),
 						('blood_group','nationality'),
-						('photo'),
+						('photo', 'pf_id'),
 						),
 				}),
 			('Job Details',{
@@ -80,21 +80,83 @@ class EmployeeAdmin(admin.ModelAdmin):
 			return update_wrapper(wrapper, view)
 
 		info = self.model._meta.app_label, self.model._meta.module_name
-
+		print info
 		urls = super(EmployeeAdmin, self).get_urls()
 		my_urls = patterns('',
+			url(r'^(\d*)/$',
+                wrap(self.form_preview),
+                name='%s_%s_preview' % info),
+			url(r'^(\d*)/edit/$',
+                wrap(self.change_view),
+                name='%s_%s_change' % info),
+			url(r'^(\d*)/download/$',
+                wrap(self.download_details_view),
+                name='%s_%s_download_details' % info),
 			url(r'^download/$',
 				wrap(self.download_view),
-				name='%s_%s_new' % info),
+				name='%s_%s_download' % info),
 			url(r'^download/pdf/$',
 				wrap(self.download_as_pdf_view),
-				name='%s_%s_new' % info),
+				name='%s_%s_download_as_pdf' % info),
 			url(r'^download/excel/$',
 				wrap(self.download_as_excel_view),
-				name='%s_%s_new' % info),
+				name='%s_%s_download_as_excel' % info),
 		)
 		# print my_urls + urls
 		return my_urls + urls
+
+	def response_post_save_change(self, request, obj):
+		"""
+		Figure out where to redirect after the 'Save' button has been pressed
+		when editing an existing object.
+		"""
+		print obj.id
+		opts = self.model._meta
+		if self.has_change_permission(request, None):
+			post_url = reverse('admin:%s_%s_preview' %
+								(opts.app_label, opts.module_name),
+								current_app=self.admin_site.name, args=[obj.id])
+		else:
+			post_url = reverse('admin:index',
+								current_app=self.admin_site.name)
+		return HttpResponseRedirect(post_url)
+
+
+	def download_details_view(self,request, object_id,extra_context = None):
+		# return self.
+		# obj = self.get_object(request, object_id)
+
+		# emp_obj = Employee.objects.get(pk=obj.employee_name_id)
+		# print emp_obj.first_name
+		# context = {
+		# 	'company_name' : "Jyodiv",
+		# 	'company_address' : '''andan\nakjnsda\naksna''',
+		# 	'employee_designation' : str(emp_obj.designation).lower().capitalize(),
+		# 	'employee_name' : str(obj.employee_name).lower().capitalize(),
+
+		# }
+
+		# html = loader.render_to_string("payslip.html", context)
+		# response = HttpResponse(mimetype="application/pdf")
+		# response['Content-Disposition'] = 'attachment; filename="payslip.pdf"'
+		# weasyprint.HTML(string=html).write_pdf(response)
+		# return response
+		raise NotImplementedError("Not Implemented Yet!!!")
+
+
+	def change_view(self,request, object_id,extra_context = None):
+		res = super(EmployeeAdmin, self).change_view(request, object_id,extra_context = None)
+		res.template_name = 'modified_change_form.html'
+		return res
+
+
+	def form_preview(self,request, object_id,extra_context = None):
+		res = self.change_view(request, object_id, extra_context = None)
+		res.template_name = 'change_form_preview.html'
+		res.context_data['edit_enable'] = True
+		res.context_data['payslip_download_enable'] = True
+		return res
+
 
 	def download_view(self,request, extra_context = None):
 		res = self.changelist_view(request, extra_context = extra_context)
@@ -103,19 +165,33 @@ class EmployeeAdmin(admin.ModelAdmin):
 		res.context_data['excel_enable'] = True
 		return res
 
+
 	def download_as_pdf_view(self,request, extra_context = None):
-		cl = self.changelist_view(request, extra_context = extra_context)
+		from weasyprint import CSS, HTML
+
+		css_string = """@page {
+							size: A4;
+							margin : 1.5cm;
+						}
+						"""
+
+
+		template_response = self.changelist_view(request, extra_context = extra_context)
+		cl = template_response.context_data['cl']
 		response = HttpResponse(content_type = 'application/pdf')
 		response['Content-Disposition'] = 'attachment; filename="pdfreport.pdf"'
-		
-		# for header in admin_list.result_headers(cl):
-		# 	print header
-		
-		pdf_canvas = canvas.Canvas(response)
-		pdf_canvas.drawString(100,100,"Hello world")
-		pdf_canvas.showPage()
-		pdf_canvas.save()
+
+		table_data = self.get_table_data(cl)
+		context = {
+			'headers' : table_data['headers'],
+			'data' : table_data['data']
+		}
+		html = loader.render_to_string("list_print.html", context)
+		print html
+		weasyprint.HTML(string=html).write_pdf(response)
 		return response
+
+
 	
 	def download_as_excel_view(self,request, extra_context = None):
 		res = self.changelist_view(request, extra_context = extra_context)
@@ -132,8 +208,30 @@ class EmployeeAdmin(admin.ModelAdmin):
 		book.save(response)
 		return response
 
+	def get_table_data(self, cl):
+		ret_dict = {}
+		ret_list = []
+		headers = [header['text'] for header in admin_list.result_headers(cl)]
+		headers.pop(0)
+		ret_dict['headers'] = headers
+		patt = r'<th .+><a .+>(.*)</a></th>|<td>(.*)</td>'
+
+		for result in admin_list.results(cl):
+			temp_list = []
+			for item in result:
+				res = re.findall(patt, item)
+				if res:
+					# temp_list.append( "" if (res[0][0] or res[0][1]) == "&nbsp;" else res[0][0] or res[0][1])
+					temp_list.append(res[0][0] or res[0][1])
+			ret_list.append(temp_list)
+		ret_dict['data'] = ret_list
+		return ret_dict
+
 
 admin.site.register(Employee, EmployeeAdmin)
+
+
+
 
 
 
@@ -225,31 +323,6 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		})]
 	)
 
-############################# TO DO ########################################
-	def net_income(self, obj):
-		# TO DO
-		heads = PayslipHead.objects.all()
-		return ""
-		
-	net_income.short_description = "Net Income"
-
-
-	def gross_income(self, obj):
-		# TO DO
-		heads = PayslipHead.objects.all()
-		mydic = {"payslip_" + head.head_name.lower() : head.head_type for head in heads}
-		fields = [field.name for field in obj._meta.fields if (field.name.lower() != "employee_name" and field.name.lower() != "id")]
-		gross = 0
-		# gross + obj. for field in fields 
-		return ""
-	gross_income.short_description = "Gross Income"
-
-
-	def download_selected_as_pdf(self,request,queryset):
-		pass
-	download_selected_as_pdf.short_description = "Download selected as PDF"
-
-#########################################################################
 
 	def get_urls(self):
 		from django.conf.urls.defaults import patterns, url
@@ -268,9 +341,9 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 			url(r'^(\d*)/edit/$',
                 wrap(self.change_view),
                 name='%s_%s_change' % info),
-			url(r'^(\d*)/download_payslip/$',
-                wrap(self.download_payslip_view),
-                name='%s_%s_download_payslip' % info),
+			url(r'^(\d*)/download/$',
+                wrap(self.download_details_view),
+                name='%s_%s_download_details' % info),
 			url(r'^download/$',
 				wrap(self.download_view),
 				name='%s_%s_download' % info),
@@ -300,7 +373,7 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 								current_app=self.admin_site.name)
 		return HttpResponseRedirect(post_url)
 
-	def download_payslip_view(self,request, object_id,extra_context = None):
+	def download_details_view(self,request, object_id,extra_context = None):
 		obj = self.get_object(request, object_id)
 
 		emp_obj = Employee.objects.get(pk=obj.employee_name_id)
@@ -320,7 +393,6 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		return response
 
 
-		# return res
 
 	def change_view(self,request, object_id,extra_context = None):
 		res = super(EmployeePayslipAdmin, self).change_view(request, object_id,extra_context = None)
@@ -405,7 +477,11 @@ class EmployeePayslipAdmin(admin.ModelAdmin):
 		ret_dict['data'] = ret_list
 		return ret_dict
 
+	def net_income():
+		return ""
 
+	def gross_income():
+		return ""
 
 
 admin.site.register(EmployeePayslip, EmployeePayslipAdmin)

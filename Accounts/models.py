@@ -11,7 +11,7 @@ class IncomeHead(models.Model):
 		verbose_name_plural = _('Income Heads')
 
 	def __unicode__(self):
-		return self.head_namee
+		return self.head_name
     
 
 class PaymentHead(models.Model):

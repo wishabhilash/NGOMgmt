@@ -72,6 +72,8 @@ class Employee(models.Model):
 	dl_no = models.CharField(max_length=25, blank=True)
 	id_card_no = models.CharField(max_length=25, blank=True)
 
+	# OTHERS
+	pf_id = models.CharField(max_length=50, blank=True)
 
 	def clean(self):
 		print self.photo

@@ -5,9 +5,11 @@ from django.utils.translation import ugettext_lazy as _
 class EmployeeForm(forms.ModelForm):
 	gender = forms.ChoiceField(choices=(('m','Male'),('f','Female')))
 	marital_status = forms.ChoiceField(choices=(('single','Single'),('married','Married')))
-	
+	pf_id = forms.CharField(max_length=50,label='PF Id', required=False)
+
 	labels = {
 		'dob' : 'Date of Birth',
+		'pf_id' : "PF Id",
 	}
 	
 	def clean_join_date(self):
@@ -83,7 +85,7 @@ def get_employee_payslip_form():
 
 	def get_attrs():
 		heads = PayslipHead.objects.all()
-		return {'payslip_'+head.head_name.lower() : forms.IntegerField(label=head.head_name.upper()) for head in heads}
+		return dict(('payslip_'+head.head_name.lower(), forms.IntegerField(label=head.head_name.upper())) for head in heads)
 
 
 	attrs = {
